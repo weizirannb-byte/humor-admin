@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  /* The admin area is dark in both system themes. */
+  --background: #0b0d12;
+  --surface: #111318;
+  --foreground: #f2f2f0;
+  --muted: #9a9ba3;
+  /* Voice colors: validated as a set on this surface (colorblind-safe, 3:1 contrast). */
+  --voice-1: #3987e5; /* Midwest Nice */
+  --voice-2: #d95926; /* NYC Local */
+  --voice-3: #199e70; /* Chronically Online */
+  /* One-hue ramp for "how much" charts, light = little, dark = a lot. */
+  --seq-low: #184f95;
+  --seq-high: #86b6ef;
+  --up: #3987e5;
+  --down: #e66767;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Hover tooltip for chart marks: <div class="tip" data-tip="..."> */
+.tip { position: relative; }
+.tip:hover::after, .tip:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #f2f2f0;
+  color: #0b0d12;
+  font-size: 12px;
+  font-weight: 600;
+  pointer-events: none;
+  z-index: 10;
+}
